@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane styleClass="login-bg" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotevia.controller.LoginController">
+    <VBox alignment="CENTER" spacing="20">
+        <VBox alignment="CENTER" maxWidth="440" spacing="18" styleClass="login-card">
+            <!-- Brand Header -->
+            <VBox alignment="CENTER" spacing="4">
+                <Label style="-fx-font-size: 30px; -fx-font-weight: 800; -fx-text-fill: #0F172A; -fx-letter-spacing: 2px;" text="HOTEVIA" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #D4AF37; -fx-font-weight: bold; -fx-letter-spacing: 1.5px;" text="SMART HOTEL MANAGEMENT SYSTEM" />
+                <Label style="-fx-font-size: 13px; -fx-text-fill: #64748B;" text="Sign in to your hospitality console" />
+            </VBox>
+
+            <!-- Error Banner -->
+            <Label fx:id="errorLabel" style="-fx-text-fill: #EF4444; -fx-font-size: 12px; -fx-font-weight: bold;" text="Error message here" wrapText="true" />
+
+            <!-- Input Fields -->
+            <VBox spacing="6">
+                <Label styleClass="form-label" text="USERNAME" />
+                <TextField fx:id="usernameField" promptText="Enter your username (e.g. admin)" text="admin" />
+            </VBox>
+
+            <VBox spacing="6">
+                <Label styleClass="form-label" text="PASSWORD" />
+                <PasswordField fx:id="passwordField" onAction="#handleLogin" promptText="Enter password" text="admin123" />
+            </VBox>
+
+            <!-- Login Button -->
+            <VBox alignment="CENTER" spacing="10">
+                <Button maxWidth="Infinity" onAction="#handleLogin" prefHeight="42" styleClass="btn-gold" text="Sign In" />
+                <ProgressIndicator fx:id="progressIndicator" maxHeight="24" maxWidth="24" />
+            </VBox>
+
+            <!-- Default Credentials Help Box -->
+            <VBox spacing="4" style="-fx-background-color: #F1F5F9; -fx-background-radius: 8px; -fx-padding: 10px 14px;">
+                <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #475569;" text="Default Demo Accounts:" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #64748B;" text="• Administrator: admin / admin123" />
+                <Label style="-fx-font-size: 11px; -fx-text-fill: #64748B;" text="• Receptionist: receptionist / recep123" />
+            </VBox>
+        </VBox>
+    </VBox>
+</StackPane>

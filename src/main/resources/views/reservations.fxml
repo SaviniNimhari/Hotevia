@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="18" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotevia.controller.ReservationController">
+    <!-- Header -->
+    <VBox spacing="4">
+        <Label styleClass="title-header" text="Reservation Management" />
+        <Label styleClass="subtitle" text="Create bookings, verify date availability, prevent double bookings, and generate receipts" />
+    </VBox>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Reservations Table Card -->
+        <VBox spacing="14" styleClass="content-card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <TextField fx:id="txtSearch" onKeyReleased="#applyFilter" prefWidth="250" promptText="🔍 Search code, guest, or room..." />
+                <Label styleClass="form-label" text="Status:" />
+                <ComboBox fx:id="cmbFilterStatus" onAction="#applyFilter" prefWidth="130" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button onAction="#handlePrintReceipt" styleClass="btn-primary" text="📄  Print Receipt" />
+            </HBox>
+
+            <TableView fx:id="reservationTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCode" prefWidth="110" text="Booking #" />
+                    <TableColumn fx:id="colCustomer" prefWidth="140" text="Guest Name" />
+                    <TableColumn fx:id="colRoom" prefWidth="65" text="Room" />
+                    <TableColumn fx:id="colCheckIn" prefWidth="95" text="Check-in" />
+                    <TableColumn fx:id="colCheckOut" prefWidth="95" text="Check-out" />
+                    <TableColumn fx:id="colTotal" prefWidth="90" text="Total ($)" />
+                    <TableColumn fx:id="colPaid" prefWidth="85" text="Paid ($)" />
+                    <TableColumn fx:id="colStatus" prefWidth="100" text="Status" />
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+
+        <!-- Booking Form Card -->
+        <VBox prefWidth="340" spacing="12" styleClass="content-card">
+            <Label styleClass="section-title" text="Booking Details" />
+
+            <VBox spacing="5">
+                <Label styleClass="form-label" text="SELECT GUEST" />
+                <ComboBox fx:id="cmbCustomer" maxWidth="Infinity" />
+            </VBox>
+
+            <HBox spacing="10">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label styleClass="form-label" text="CHECK-IN DATE" />
+                    <DatePicker fx:id="dpCheckIn" maxWidth="Infinity" />
+                </VBox>
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label styleClass="form-label" text="CHECK-OUT DATE" />
+                    <DatePicker fx:id="dpCheckOut" maxWidth="Infinity" />
+                </VBox>
+            </HBox>
+
+            <VBox spacing="5">
+                <Label styleClass="form-label" text="AVAILABLE ROOMS FOR DATES" />
+                <ComboBox fx:id="cmbRoom" maxWidth="Infinity" />
+            </VBox>
+
+            <!-- Dynamic Cost Calculation Box -->
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #FEF3C7; -fx-background-radius: 8px; -fx-padding: 10px 14px;">
+                <VBox spacing="2">
+                    <Label style="-fx-font-size: 11px; -fx-font-weight: bold; -fx-text-fill: #92400E;" text="ESTIMATED TOTAL (INC. TAX)" />
+                    <Label fx:id="lblCalculatedTotal" style="-fx-font-size: 20px; -fx-font-weight: 800; -fx-text-fill: #0F172A;" text="$0.00" />
+                </VBox>
+            </HBox>
+
+            <HBox spacing="10">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label styleClass="form-label" text="DEPOSIT PAID ($)" />
+                    <TextField fx:id="txtDepositPaid" promptText="0.00" text="0.00" />
+                </VBox>
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label styleClass="form-label" text="BOOKING STATUS" />
+                    <ComboBox fx:id="cmbStatus" maxWidth="Infinity" />
+                </VBox>
+            </HBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Action Buttons -->
+            <VBox spacing="8">
+                <Button maxWidth="Infinity" onAction="#handleSave" styleClass="btn-gold" text="💾  Confirm / Update Booking" />
+                <HBox spacing="8">
+                    <Button maxWidth="Infinity" onAction="#handleClear" styleClass="btn-secondary" text="Clear Form" HBox.hgrow="ALWAYS" />
+                    <Button maxWidth="Infinity" onAction="#handleCancelReservation" styleClass="btn-danger" text="Cancel Res." HBox.hgrow="ALWAYS" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

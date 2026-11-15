@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="18" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotevia.controller.CheckInOutController">
+    <!-- Header -->
+    <VBox spacing="4">
+        <Label styleClass="title-header" text="Front Desk: Check-in &amp; Check-out" />
+        <Label styleClass="subtitle" text="Confirm guest arrivals, assign physical rooms, check final bill settlements, and process departures" />
+    </VBox>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Active Reservations Eligible for Check-in / Check-out -->
+        <VBox spacing="14" styleClass="content-card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <TextField fx:id="txtSearchRes" onKeyReleased="#handleSearch" prefWidth="280" promptText="🔍 Search reservation code (e.g. HTV-2026-001)..." />
+                <Button onAction="#handleSearch" styleClass="btn-secondary" text="Search" />
+                <Region HBox.hgrow="ALWAYS" />
+            </HBox>
+
+            <Label styleClass="section-title" text="Active Stays &amp; Arrivals" />
+            <TableView fx:id="activeReservationsTable" prefHeight="220" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colResCode" prefWidth="120" text="Booking #" />
+                    <TableColumn fx:id="colCustomer" prefWidth="150" text="Guest Name" />
+                    <TableColumn fx:id="colRoom" prefWidth="70" text="Room" />
+                    <TableColumn fx:id="colDates" prefWidth="180" text="Stay Window" />
+                    <TableColumn fx:id="colBalance" prefWidth="95" text="Balance ($)" />
+                    <TableColumn fx:id="colStatus" prefWidth="105" text="Status" />
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+
+            <!-- Audit History Table -->
+            <Label styleClass="section-title" text="Recent Front Desk Activity Logs" />
+            <TableView fx:id="historyLogTable" prefHeight="130">
+                <columns>
+                    <TableColumn fx:id="colLogRes" prefWidth="110" text="Booking #" />
+                    <TableColumn fx:id="colLogCustomer" prefWidth="130" text="Guest" />
+                    <TableColumn fx:id="colLogRoom" prefWidth="65" text="Room" />
+                    <TableColumn fx:id="colLogCheckIn" prefWidth="140" text="Check-in Timestamp" />
+                    <TableColumn fx:id="colLogCheckOut" prefWidth="140" text="Check-out Timestamp" />
+                    <TableColumn fx:id="colLogNotes" prefWidth="180" text="Desk Notes" />
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+
+        <!-- Action Panel -->
+        <VBox prefWidth="320" spacing="14" styleClass="content-card">
+            <Label styleClass="section-title" text="Front Desk Actions" />
+
+            <VBox spacing="4" style="-fx-background-color: #F1F5F9; -fx-background-radius: 8px; -fx-padding: 10px;">
+                <Label fx:id="lblSelectedDetails" style="-fx-font-size: 11px; -fx-text-fill: #334155; -fx-font-weight: bold;" text="Please select a reservation on the left." wrapText="true" />
+            </VBox>
+
+            <VBox spacing="6">
+                <Label styleClass="form-label" text="DESK / GUEST NOTES" />
+                <TextArea fx:id="txtOperationalNotes" prefRowCount="4" promptText="Keycards issued, baggage requests, minibar status..." wrapText="true" />
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Primary Action Buttons -->
+            <VBox spacing="10">
+                <Button maxWidth="Infinity" onAction="#handleCheckIn" prefHeight="44" styleClass="btn-success" text="🛎️  CONFIRM CHECK-IN" />
+                <Button maxWidth="Infinity" onAction="#handleCheckOut" prefHeight="44" styleClass="btn-gold" text="🚪  PROCESS CHECK-OUT" />
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

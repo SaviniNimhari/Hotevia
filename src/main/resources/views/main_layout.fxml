@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="780.0" prefWidth="1200.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotevia.controller.MainLayoutController">
+    <!-- LEFT SIDEBAR -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar">
+            <!-- Brand -->
+            <VBox spacing="2">
+                <padding><Insets bottom="15" left="8" right="8" top="5" /></padding>
+                <Label styleClass="sidebar-brand-title" text="HOTEVIA" />
+                <Label styleClass="sidebar-brand-sub" text="LUXURY HOSPITALITY PMS" />
+            </VBox>
+
+            <!-- Navigation Menu Items -->
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                <VBox spacing="4" style="-fx-background-color: transparent;">
+                    <Button fx:id="btnDashboard" maxWidth="Infinity" onAction="#showDashboard" styleClass="sidebar-btn" text="📊   Dashboard" />
+                    <Button fx:id="btnRooms" maxWidth="Infinity" onAction="#showRooms" styleClass="sidebar-btn" text="🚪   Rooms" />
+                    <Button fx:id="btnCategories" maxWidth="Infinity" onAction="#showCategories" styleClass="sidebar-btn" text="🏷️   Room Categories" />
+                    <Button fx:id="btnCustomers" maxWidth="Infinity" onAction="#showCustomers" styleClass="sidebar-btn" text="👥   Customers" />
+                    <Button fx:id="btnReservations" maxWidth="Infinity" onAction="#showReservations" styleClass="sidebar-btn" text="📅   Reservations" />
+                    <Button fx:id="btnCheckInOut" maxWidth="Infinity" onAction="#showCheckInOut" styleClass="sidebar-btn" text="🛎️   Check-in &amp; Out" />
+                    <Button fx:id="btnPayments" maxWidth="Infinity" onAction="#showPayments" styleClass="sidebar-btn" text="💳   Payments" />
+                    <Button fx:id="btnReports" maxWidth="Infinity" onAction="#showReports" styleClass="sidebar-btn" text="📈   Reports &amp; Analytics" />
+                    <Button fx:id="btnUsers" maxWidth="Infinity" onAction="#showUsers" styleClass="sidebar-btn" text="🛡️   User Management" />
+                    <Button fx:id="btnSettings" maxWidth="Infinity" onAction="#showSettings" styleClass="sidebar-btn" text="⚙️   System Settings" />
+                </VBox>
+            </ScrollPane>
+
+            <!-- Sidebar Footer / Logout -->
+            <VBox spacing="8" styleClass="sidebar-footer">
+                <Button maxWidth="Infinity" onAction="#handleLogout" styleClass="btn-danger" text="🚪  Sign Out" />
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- CENTER / TOP AREA -->
+    <center>
+        <BorderPane>
+            <!-- TOP NAVBAR -->
+            <top>
+                <HBox alignment="CENTER_LEFT" spacing="15" styleClass="top-navbar">
+                    <VBox spacing="2">
+                        <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #0F172A;" text="Hotevia Hospitality Console" />
+                        <Label style="-fx-font-size: 11px; -fx-text-fill: #64748B;" text="Grand Luxury Resort &amp; Suites" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    
+                    <!-- User info pill -->
+                    <HBox alignment="CENTER" spacing="10" style="-fx-background-color: #F1F5F9; -fx-background-radius: 20px; -fx-padding: 4px 14px;">
+                        <Label style="-fx-font-size: 14px;" text="👤" />
+                        <Label fx:id="userFullNameLabel" style="-fx-font-weight: bold; -fx-text-fill: #1E293B;" text="Administrator" />
+                        <Label fx:id="userRoleBadge" styleClass="user-badge" text="ADMIN" />
+                    </HBox>
+                </HBox>
+            </top>
+
+            <!-- DYNAMIC CONTENT VIEW -->
+            <center>
+                <StackPane fx:id="contentArea" style="-fx-background-color: #F8FAFC;">
+                    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                </StackPane>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>

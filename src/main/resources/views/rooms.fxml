@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="18" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotevia.controller.RoomController">
+    <!-- Header -->
+    <VBox spacing="4">
+        <Label styleClass="title-header" text="Room Management" />
+        <Label styleClass="subtitle" text="Configure hotel inventory, category assignments, and operational room status" />
+    </VBox>
+
+    <!-- Main Content Area: Split Table and Form -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        <!-- Rooms Table Card -->
+        <VBox spacing="14" styleClass="content-card" HBox.hgrow="ALWAYS">
+            <!-- Filter Bar -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <TextField fx:id="txtSearch" onKeyReleased="#applyFilter" prefWidth="240" promptText="🔍 Search room number or category..." />
+                <Label styleClass="form-label" text="Status:" />
+                <ComboBox fx:id="cmbFilterStatus" onAction="#applyFilter" prefWidth="140" />
+                <Region HBox.hgrow="ALWAYS" />
+            </HBox>
+
+            <TableView fx:id="roomTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colRoomNum" prefWidth="90" text="Room #" />
+                    <TableColumn fx:id="colCategory" prefWidth="180" text="Category" />
+                    <TableColumn fx:id="colFloor" prefWidth="70" text="Floor" />
+                    <TableColumn fx:id="colPrice" prefWidth="110" text="Price/Night" />
+                    <TableColumn fx:id="colStatus" prefWidth="120" text="Status" />
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+
+        <!-- Room Edit/Create Form Card -->
+        <VBox prefWidth="320" spacing="14" styleClass="content-card">
+            <Label styleClass="section-title" text="Room Details" />
+
+            <VBox spacing="6">
+                <Label styleClass="form-label" text="ROOM NUMBER" />
+                <TextField fx:id="txtRoomNumber" promptText="e.g. 101, 202A" />
+            </VBox>
+
+            <VBox spacing="6">
+                <Label styleClass="form-label" text="ROOM CATEGORY" />
+                <ComboBox fx:id="cmbCategory" maxWidth="Infinity" />
+            </VBox>
+
+            <VBox spacing="6">
+                <Label styleClass="form-label" text="FLOOR NUMBER" />
+                <TextField fx:id="txtFloor" promptText="e.g. 1, 2, 3" />
+            </VBox>
+
+            <VBox spacing="6">
+                <Label styleClass="form-label" text="OPERATIONAL STATUS" />
+                <ComboBox fx:id="cmbStatus" maxWidth="Infinity" />
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <!-- Action Buttons -->
+            <VBox spacing="8">
+                <Button maxWidth="Infinity" onAction="#handleSave" styleClass="btn-gold" text="💾  Save / Update Room" />
+                <HBox spacing="8">
+                    <Button maxWidth="Infinity" onAction="#handleClear" styleClass="btn-secondary" text="Clear Form" HBox.hgrow="ALWAYS" />
+                    <Button maxWidth="Infinity" onAction="#handleDelete" styleClass="btn-danger" text="Delete" HBox.hgrow="ALWAYS" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>

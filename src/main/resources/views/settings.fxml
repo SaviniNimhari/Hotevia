@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hotevia.controller.SettingsController">
+    <VBox spacing="20">
+        <padding><Insets bottom="20" left="5" right="10" top="5" /></padding>
+
+        <!-- Header -->
+        <VBox spacing="4">
+            <Label styleClass="title-header" text="System Settings &amp; Preferences" />
+            <Label styleClass="subtitle" text="Configure hotel branding, currency, taxation rates, and personal account security" />
+        </VBox>
+
+        <HBox spacing="20">
+            <!-- Hotel Property Settings Card -->
+            <VBox prefWidth="480" spacing="14" styleClass="content-card" HBox.hgrow="ALWAYS">
+                <Label styleClass="section-title" text="Hotel Property Profile" />
+
+                <VBox spacing="5">
+                    <Label styleClass="form-label" text="HOTEL NAME" />
+                    <TextField fx:id="txtHotelName" promptText="e.g. Hotevia Grand Luxury Resort" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label styleClass="form-label" text="PHYSICAL ADDRESS" />
+                    <TextField fx:id="txtAddress" promptText="Street, City, Country" />
+                </VBox>
+
+                <HBox spacing="10">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label styleClass="form-label" text="TELEPHONE" />
+                        <TextField fx:id="txtPhone" promptText="+1 (555) 019-2834" />
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label styleClass="form-label" text="OFFICIAL EMAIL" />
+                        <TextField fx:id="txtEmail" promptText="reservations@hotel.com" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label styleClass="form-label" text="BASE CURRENCY SYMBOL" />
+                        <TextField fx:id="txtCurrency" promptText="$" />
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label styleClass="form-label" text="TAX RATE (%)" />
+                        <TextField fx:id="txtTaxRate" promptText="10.00" />
+                    </VBox>
+                    <VBox spacing="5" HBox.hgrow="ALWAYS">
+                        <Label styleClass="form-label" text="SERVICE CHARGE (%)" />
+                        <TextField fx:id="txtServiceCharge" promptText="5.00" />
+                    </VBox>
+                </HBox>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button maxWidth="Infinity" onAction="#handleSaveHotelSettings" prefHeight="40" styleClass="btn-gold" text="💾  Save Property Configuration" />
+            </VBox>
+
+            <!-- Password Security Card -->
+            <VBox prefWidth="380" spacing="14" styleClass="content-card">
+                <Label styleClass="section-title" text="Account Password Management" />
+
+                <VBox spacing="5">
+                    <Label styleClass="form-label" text="CURRENT PASSWORD" />
+                    <PasswordField fx:id="txtCurrentPassword" promptText="Enter your current password" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label styleClass="form-label" text="NEW PASSWORD" />
+                    <PasswordField fx:id="txtNewPassword" promptText="Enter new secure password" />
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label styleClass="form-label" text="CONFIRM NEW PASSWORD" />
+                    <PasswordField fx:id="txtConfirmPassword" promptText="Repeat new password" />
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button maxWidth="Infinity" onAction="#handleChangePassword" prefHeight="40" styleClass="btn-primary" text="🔒  Update Password" />
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>
